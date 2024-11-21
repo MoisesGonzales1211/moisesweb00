@@ -1,0 +1,35 @@
+<body>
+    <div class="login">
+      <h2>Login</h2>
+      <form (ngSubmit)="onSubmit()">
+        <label for="email">Email</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          placeholder="pon tu correo email" 
+          [(ngModel)]="email"
+          required 
+        />
+        <br />
+    
+        <label for="password">contraseña</label>
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          placeholder="pon tu contraseña" 
+          [(ngModel)]="password" 
+          required 
+        />
+        <br />
+    
+        <button type="submit">INICIAR SESIÓN</button>
+      </form>
+      <div class="register-link">has olvidado tu contraseña <a href="#">recuperar</a></div>
+      <br>
+      <button routerLink='/register' type="button">Registrarse</button>
+    </div>
+    
+  </body>
+  
