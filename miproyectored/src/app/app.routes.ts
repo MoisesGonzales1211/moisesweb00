@@ -10,16 +10,18 @@ import { AppComponent } from './app.component';
 export const routes: Routes = [
    { path: '', redirectTo: 'login', pathMatch: 'full' }, 
    { path: 'login', component: LoginComponent }, 
-   { path: 'register', loadComponent: () => import('./register/register.component').then(m => m.RegisterComponent) },
+   {path:'register',
+      loadComponent: ()=> import('./register/register.component').then(m=>m.RegisterComponent)
+   }
 ];
 
 @NgModule({
    declarations: [],
-    imports: [RouterModule.forRoot(routes),FormsModule,BrowserModule],
+    imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule],
     providers: [],
     bootstrap:[]
     
    
   })
-  export class appmodule {}
+  export class  AppRoutingModule{}
