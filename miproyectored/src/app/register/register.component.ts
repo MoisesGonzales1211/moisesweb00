@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 })
 export class RegisterComponent {
   name: string = '';
+  apell: string = '';
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
