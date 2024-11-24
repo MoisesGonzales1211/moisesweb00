@@ -56,13 +56,16 @@
         required 
       />
       <br />
-
-      <!-- Mensaje de error para contraseñas no coincidentes -->
-      <div *ngIf="errorMessage" class="error-message">
-        {{ errorMessage }}
+      
+      <div *ngIf="form.get('password')?.value !== form.get('confirmpassword')?.value" class="error-message">
+        Las contraseñas no coinciden
       </div>
 
-      <button type="submit">REGISTRARSE</button>
+      <button 
+        type="submit" 
+        [disabled]="form.invalid || form.get('password')?.value !== form.get('confirmpassword')?.value">
+        REGISTRARSE
+      </button>
     </form>
     <div class="login-link">
       ¿Ya tienes una cuenta? <a routerLink="/login">Inicia sesión</a>

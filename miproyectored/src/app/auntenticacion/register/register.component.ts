@@ -20,7 +20,7 @@ interface formregister{
   styleUrl: './register.component.css'
   
 })
-export class RegisterComponent {
+export default class RegisterComponent {
   private _formBuilder = inject(FormBuilder);
     form = this._formBuilder.group<formregister>({
     name: this._formBuilder.control('',[Validators.required]),
@@ -31,8 +31,6 @@ export class RegisterComponent {
       
   });
   errorMessage: string = '';
-  showPassword: boolean = false; 
-  showConfirmPassword: boolean = false; 
 
   Submit(): void {
     if(this.form.invalid) return;
