@@ -1,0 +1,39 @@
+<body>
+    <form [formGroup]="form"(ngSubmit)="Submit()">
+     <div class="login">
+      <h2>Login</h2>
+      <form >
+        <label for="email">Email</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          placeholder="pon tu correo email" 
+          formControlName="email"
+          required 
+        />
+        <br />
+    
+        <label for="password">contraseña</label>
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          placeholder="pon tu contraseña" 
+          formControlName="password" 
+          required 
+        />
+        <br />
+    
+        <button type="submit">INICIAR SESIÓN</button>
+      </form>
+      <div class="register-link">has olvidado tu contraseña <a href="#">recuperar</a></div>
+      <br>
+      <button type="button"><a routerLink='/register'>Registrarse</a></button>
+
+    </div>
+   </form> 
+  </body>   
+    
+    
+  
