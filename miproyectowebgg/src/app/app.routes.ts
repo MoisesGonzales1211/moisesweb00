@@ -9,7 +9,7 @@ export const routes: Routes = [
     {
         path: 'autenticacion',
         loadChildren: () => import('./autenticacion/features/autenticacion.routes').then(
-          (mod) => mod.default
+          (mod) => mod.default),
     }
   //  {path: 'tasks'}
 ];
