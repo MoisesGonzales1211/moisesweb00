@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from 'express';
 
 interface formRegIster{
   name: FormControl<string | null>;
@@ -19,6 +20,7 @@ interface formRegIster{
 })
 
 export default class RegisterComponent {
+  private router = inject(Router);
   private _formBuilder = inject(FormBuilder);
     form = this._formBuilder.group<formRegIster>({
     name: this._formBuilder.control('',[Validators.required]),
@@ -42,6 +44,7 @@ export default class RegisterComponent {
     this.errorMessage = '';
      console.log({ name, apell, email, password, confirmpassword});
      
+     this.router.navigate(['/autenticacion/lo-gin']);
     }
 
   }

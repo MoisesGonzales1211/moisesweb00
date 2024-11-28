@@ -9,11 +9,11 @@
           id="name" 
           name="name" 
           placeholder="Ingresa tu nombre" 
-          formArrayName="name"
+          formControlName="name" 
           required 
         />
         <br />
-  
+
         <label for="apell">Apellido</label>
         <input 
           type="text" 
@@ -24,7 +24,7 @@
           required 
         />
         <br />
-  
+
         <label for="email">Email</label>
         <input 
           type="email" 
@@ -35,7 +35,7 @@
           required 
         />
         <br />
-  
+
         <label for="password">Contraseña</label>
         <input 
           type="password" 
@@ -46,14 +46,14 @@
           required 
         />
         <br />
-  
+
         <label for="confirmPassword">Confirmar contraseña</label>
         <input 
           type="password" 
           id="confirmPassword" 
           name="confirmPassword" 
           placeholder="Confirma tu contraseña" 
-          formControlName="confirmPassword"
+          formControlName="confirmpassword"
           required 
         />
         <br />
@@ -61,19 +61,18 @@
         <div *ngIf="form.get('password')?.value !== form.get('confirmpassword')?.value" class="error-message">
           Las contraseñas no coinciden
         </div>
-  
+
         <button 
           type="submit" 
           [disabled]="form.invalid || form.get('password')?.value !== form.get('confirmpassword')?.value">
           REGISTRARSE
         </button>
       </form>
+      
+      <!-- Enlace para regresar al login -->
       <div class="login-link">
-        ¿Ya tienes una cuenta? <a routerLink="/autenticacion/lo-gin">Inicia sesión</a>
+        ¿Ya tienes una cuenta? <a type="button" routerLink="/autenticacion/lo-gin">Inicia sesión</a>
       </div>
     </div>
-</div>
-  
+  </div>
 </section>
-  
-
