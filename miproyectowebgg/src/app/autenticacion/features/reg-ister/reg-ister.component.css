@@ -1,5 +1,5 @@
 /* Estilos generales */
-body {
+section {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -17,7 +17,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
     width: 100%;
-    max-width: 400px; /* Máximo ancho */
+    max-width: 400px; /* Máximo ancho para que no crezca demasiado */
     text-align: center;
   }
   
@@ -76,6 +76,15 @@ body {
     background-color: #165cbd; /* Azul más oscuro */
   }
   
+  /* Mensaje de error */
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: -10px;
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
   /* Estilo para el enlace de inicio de sesión */
   .login-link {
     margin-top: 15px;
@@ -92,3 +101,4 @@ body {
     text-decoration: underline;
   }
   
+
