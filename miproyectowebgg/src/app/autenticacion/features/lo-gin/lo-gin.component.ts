@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink, RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 interface formlogin {
   email: FormControl<string | null>;
   password: FormControl<string | null>;
@@ -12,8 +12,24 @@ interface formlogin {
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule, RouterModule, RouterLink],
   templateUrl: './lo-gin.component.html',
-  styleUrl: './lo-gin.component.css'
+  styleUrls: ['./lo-gin.component.css']
 })
 export default class LoGinComponent {
+  form: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+    });
+  }
+
+  Submit(): void {
+    if (this.form.invalid) return;
+
+    const { email, password } = this.form.value;
+
+    console.log('Datos del formulario:', { email, password });
+  }
 
 }

@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -12,18 +13,35 @@ interface formRegIster{
 @Component({
   selector: 'app-reg-ister',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './reg-ister.component.html',
-  styleUrl: './reg-ister.component.css'
+  styleUrls: ['./reg-ister.component.css']
 })
-export default class RegIsterComponent {
-  private _formBuilder = inject(FormBuilder);
-  form = this._formBuilder.group<formRegIster>({ 
-    email: this._formBuilder.control('',[
-      Validators.required,
-      Validators.email,
-    ]),
-    password: this._formBuilder.control('',Validators.required),
-  });
 
-}
+export default class RegisterComponent {
+  private _formBuilder = inject(FormBuilder);
+    form = this._formBuilder.group<formRegIster>({
+    name: this._formBuilder.control('',[Validators.required]),
+    apell: this._formBuilder.control('',[Validators.required]),
+    email: this._formBuilder.control('',[Validators.required, Validators.email]),
+    password: this._formBuilder.control('',[Validators.required]),
+    confirmpassword: this._formBuilder.control('',[Validators.required])
+      
+  });
+  errorMessage: string = '';
+
+  Submit(): void {
+    if(this.form.invalid) return;
+     const { name, apell, email, password, confirmpassword }= this.form.value;
+     if (!email || !password || !name || !apell || !confirmpassword) return;
+     if (password !== confirmpassword) {
+      this.errorMessage = 'Las contraseñas no coinciden';
+      return;
+    }
+
+    this.errorMessage = '';
+     console.log({ name, apell, email, password, confirmpassword});
+     
+    }
+
+  }
