@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { hasEmailError, isRequired } from '../../utils/valideitors';
 
 interface formRegIster{
   name: FormControl<string | null>;
@@ -20,6 +21,7 @@ interface formRegIster{
 })
 
 export default class RegisterComponent {
+
   private router = inject(Router);
   private _formBuilder = inject(FormBuilder);
     form = this._formBuilder.group<formRegIster>({
@@ -30,6 +32,15 @@ export default class RegisterComponent {
     confirmpassword: this._formBuilder.control('',[Validators.required])
       
   });
+  isRequired(field: 'email' | 'password') {
+    return isRequired(field, this.form);
+  }
+  hasEmailError() {
+    return hasEmailError(this.form);
+  }
+
+
+
   errorMessage: string = '';
 
   Submit(): void {
