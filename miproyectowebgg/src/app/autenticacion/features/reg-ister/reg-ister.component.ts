@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from 'express';
+import { Router } from '@angular/router';
 
 interface formRegIster{
   name: FormControl<string | null>;
