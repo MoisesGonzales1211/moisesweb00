@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { hasEmailError, isRequired } from '../../utils/valideitors';
+import { AuthService } from '../../data-access/auth.service';
 
 interface formRegIster{
   name: FormControl<string | null>;
@@ -21,7 +22,8 @@ interface formRegIster{
 })
 
 export default class RegisterComponent {
-
+ 
+  private _authService = inject(AuthService)
   private router = inject(Router);
   private _formBuilder = inject(FormBuilder);
     form = this._formBuilder.group<formRegIster>({
@@ -43,7 +45,7 @@ export default class RegisterComponent {
 
   errorMessage: string = '';
 
-  Submit(): void {
+  async Submit(): void {
     if(this.form.invalid) return;
      const { name, apell, email, password, confirmpassword }= this.form.value;
      if (!email || !password || !name || !apell || !confirmpassword) return;
@@ -56,6 +58,7 @@ export default class RegisterComponent {
      console.log({ name, apell, email, password, confirmpassword});
      
      this.router.navigate(['/autenticacion/lo-gin']);
+     this._authService.signUp({ email, password });
     }
 
   }
