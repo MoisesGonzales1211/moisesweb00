@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { hasEmailError, isRequired } from '../../utils/valideitors';
 import { AuthService } from '../../data-access/auth.service';
 import { toast } from 'ngx-sonner';
-import { error } from 'console';
+
 
 interface formRegIster{
   name: FormControl<string | null>;
@@ -18,15 +18,15 @@ interface formRegIster{
 @Component({
   selector: 'app-reg-ister',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink],
   templateUrl: './reg-ister.component.html',
   styleUrls: ['./reg-ister.component.css']
 })
 
 export default class RegisterComponent {
-  private _router = inject(Router);
+ 
   private _authService = inject(AuthService);
-  private router = inject(Router);
+  private _router = inject(Router);
   private _formBuilder = inject(FormBuilder);
     form = this._formBuilder.group<formRegIster>({
     name: this._formBuilder.control('',[Validators.required]),
@@ -59,7 +59,7 @@ export default class RegisterComponent {
     this.errorMessage = '';
      console.log({ name, apell, email, password, confirmpassword});
      
-     this.router.navigate(['/autenticacion/lo-gin']);
+     this._router.navigate(['/autenticacion/lo-gin']);
      this._authService.signUp({ email, password });
      
     if(this.form.invalid) return;
@@ -69,7 +69,7 @@ export default class RegisterComponent {
 
       await this._authService.signUp ({ email, password});
       toast.success('usuario creado correctamente');
-      this.router.navigateByUrl('/tasks');
+      this._router.navigateByUrl('/tasks');
       } catch (error){
         toast.error('ocurrio un error');
       }
