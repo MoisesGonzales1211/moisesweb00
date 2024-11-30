@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { hasEmailError, isRequired } from '../../utils/valideitors';
 import { AuthService } from '../../data-access/auth.service';
 import { toast } from 'ngx-sonner';
+import { error } from 'console';
 
 interface formRegIster{
   name: FormControl<string | null>;
@@ -23,8 +24,8 @@ interface formRegIster{
 })
 
 export default class RegisterComponent {
- 
-  private _authService = inject(AuthService)
+  private _router = inject(Router);
+  private _authService = inject(AuthService);
   private router = inject(Router);
   private _formBuilder = inject(FormBuilder);
     form = this._formBuilder.group<formRegIster>({
@@ -60,7 +61,7 @@ export default class RegisterComponent {
      
      this.router.navigate(['/autenticacion/lo-gin']);
      this._authService.signUp({ email, password });
-
+     
     if(this.form.invalid) return;
     try {
       const{ email, password } = this.form.value;
@@ -68,6 +69,7 @@ export default class RegisterComponent {
 
       await this._authService.signUp ({ email, password});
       toast.success('usuario creado correctamente');
+      this.router.navigateByUrl('/tasks');
       } catch (error){
         toast.error('ocurrio un error');
       }

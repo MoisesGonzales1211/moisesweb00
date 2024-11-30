@@ -9,7 +9,15 @@ export const routes: Routes = [
         path: 'autenticacion',
         loadChildren: () => import('./autenticacion/features/autenticacion.routes').then(
           (mod) => mod.default),
+    },
+    {
+      path: 'tasks',
+      loadChildren: () => import('./task/features/task.routes')
+    },
+    {
+      path: '**',
+      redirectTo: '/tasks',
     }
     
-  //  {path: 'tasks'}
+  
 ];
