@@ -1,5 +1,14 @@
 import { inject, Injectable } from '@angular/core';
-import { Auth, User, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
+
+
+
+
+export interface User {
+  email: string;
+  password: string;
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +21,7 @@ export class AuthService {
       this._auth,
       user.email,
       user.password
+
     );
   }
 }

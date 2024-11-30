@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angu
 import { Router } from '@angular/router';
 import { hasEmailError, isRequired } from '../../utils/valideitors';
 import { AuthService } from '../../data-access/auth.service';
+import { toast } from 'ngx-sonner';
 
 interface formRegIster{
   name: FormControl<string | null>;
@@ -45,7 +46,7 @@ export default class RegisterComponent {
 
   errorMessage: string = '';
 
-  async Submit(): void {
+  async Submit() {
     if(this.form.invalid) return;
      const { name, apell, email, password, confirmpassword }= this.form.value;
      if (!email || !password || !name || !apell || !confirmpassword) return;
@@ -59,6 +60,16 @@ export default class RegisterComponent {
      
      this.router.navigate(['/autenticacion/lo-gin']);
      this._authService.signUp({ email, password });
-    }
 
+    if(this.form.invalid) return;
+    try {
+      const{ email, password } = this.form.value;
+      if ( !email || !password ) return;
+
+      await this._authService.signUp ({ email, password});
+      toast.success('usuario creado correctamente');
+      } catch (error){
+        toast.error('ocurrio un error');
+      }
+    }
   }
