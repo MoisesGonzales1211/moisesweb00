@@ -5,6 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { hasEmailError, isRequired } from '../../utils/valideitors';
 import { AuthService } from '../../data-access/auth.service';
 import { toast } from 'ngx-sonner';
+import { GoogleButtonComponent } from '../../iu/google-button/google-button.component';
 
 
 interface formRegIster{
@@ -18,7 +19,7 @@ interface formRegIster{
 @Component({
   selector: 'app-reg-ister',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterLink],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink, GoogleButtonComponent],
   templateUrl: './reg-ister.component.html',
   styleUrls: ['./reg-ister.component.css']
 })
@@ -72,6 +73,15 @@ export default class RegisterComponent {
       this._router.navigateByUrl('/tasks');
       } catch (error){
         toast.error('ocurrio un error');
+      }
+    }
+    async submitWithGoogle() {
+      try {
+        await this._authService.signInWithGoogle();
+        toast.success('Bienvenido denuevo');
+        this._router.navigateByUrl('/tasks');
+      } catch (error) {
+        toast.error('Ocurrio un error');
       }
     }
   }
