@@ -12,6 +12,7 @@ export const routes: Routes = [
     {
       canActivateChild: [privateGuard()],
       path: 'tasks',
+      loadComponent: () => import('./shared/iu/layout.component'),
       loadChildren: () => import('./task/features/task.routes')
     },
     {

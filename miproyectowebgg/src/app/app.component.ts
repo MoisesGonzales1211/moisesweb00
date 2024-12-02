@@ -10,11 +10,5 @@ import { AuthStateService } from './shared/data-access/auth-state.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'miproyectowebgg';
-  private _authstate = inject(AuthStateService);
-  private _router = inject(Router);
-  async logOut(){
-    await this._authstate.logOut();
-    this._router.navigateByUrl('/autenticacion/lo-gin');
-  }
+
 }
