@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 import { NgxSonnerToaster } from 'ngx-sonner';
+import { AuthStateService } from './shared/data-access/auth-state.service';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -10,4 +11,10 @@ import { NgxSonnerToaster } from 'ngx-sonner';
 })
 export class AppComponent {
   title = 'miproyectowebgg';
+  private _authstate = inject(AuthStateService);
+  private _router = inject(Router);
+  async logOut(){
+    await this._authstate.logOut();
+    this._router.navigateByUrl('/autenticacion/lo-gin');
+  }
 }

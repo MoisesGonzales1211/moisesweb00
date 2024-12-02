@@ -12,5 +12,7 @@ export class AuthStateService {
     return authState(this._auth);
   }
 
-
+  logOut() {
+    return signOut(this._auth);
+  }
 }
