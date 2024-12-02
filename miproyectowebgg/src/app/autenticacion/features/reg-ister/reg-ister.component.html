@@ -3,7 +3,7 @@
     <div class="register">
       <h2>Registro</h2>
       <div>
-        <app-google-button (onClick)="submitWithGoogle()" />
+        
       </div>
       
       <form [formGroup]="form" (ngSubmit)="Submit()">
@@ -81,8 +81,11 @@
           [disabled]="form.invalid || form.get('password')?.value !== form.get('confirmpassword')?.value">
           REGISTRARSE
         </button>
+        <div>
+          <br>
+          <app-google-button (onClick)="submitWithGoogle()" />
+        </div>
       </form>
-      
       <!-- Enlace para regresar al login -->
       <div class="login-link">
         ¿Ya tienes una cuenta? <a type="button" routerLink="/autenticacion/lo-gin">Inicia sesión</a>
