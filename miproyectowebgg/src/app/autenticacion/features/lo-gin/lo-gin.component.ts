@@ -19,7 +19,7 @@ interface formLoGin {
   styleUrls: ['./lo-gin.component.css'],
   providers: []
 })
-export default class LoGinComponent {
+export default class LoginComponent {
   private _authService = inject(AuthService);
   private _router = inject(Router);
   private _FormBuilder= inject(FormBuilder);

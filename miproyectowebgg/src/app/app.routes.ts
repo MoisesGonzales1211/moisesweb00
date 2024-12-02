@@ -2,12 +2,9 @@ import { Routes } from '@angular/router';
 import { privateGuard, publicGuard } from './core/auth.guard';
 
 export const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'autenticacion/lo-gin', pathMatch: 'full', // redirige al login 
-  },
+ 
     {
-      canActivateChild: [publicGuard()],
+      canActivateChild: [publicGuard ()],
         path: 'autenticacion',
         loadChildren: () => import('./autenticacion/features/autenticacion.routes').then(
           (mod) => mod.default),
@@ -20,10 +17,5 @@ export const routes: Routes = [
     {
       path: '**',
       redirectTo: '/tasks',
-    },
-    {
-
-    }
-    
-  
+    },    
 ];
