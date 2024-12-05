@@ -16,7 +16,7 @@ export default [
     },
     {
         path: 'recover-password',
-        loadComponent: () => import('./recover-password/recover-password.component'),
+        loadComponent: () => import('../recover-password/recover-password/recover-password.component'),
         providers: [provideHttpClient()],
       },
     
