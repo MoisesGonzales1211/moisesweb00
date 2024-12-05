@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../data-access/auth.service';
 import { toast } from 'ngx-sonner';
 import { GoogleButtonComponent } from '../../iu/google-button/google-button.component';
+
 interface formLoGin {
   email: FormControl<string | null>;
   password: FormControl<string | null>;
@@ -14,7 +15,7 @@ interface formLoGin {
 @Component({
   selector: 'app-lo-gin',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterModule, RouterLink, GoogleButtonComponent],
+  imports: [ReactiveFormsModule, CommonModule, RouterModule, RouterLink, GoogleButtonComponent, ],
   templateUrl: './lo-gin.component.html',
   styleUrls: ['./lo-gin.component.css'],
   providers: []

@@ -1,3 +1,4 @@
+import { provideHttpClient } from '@angular/common/http';
 import { Routes } from '@angular/router';
 
 
@@ -16,6 +17,7 @@ export default [
     {
         path: 'recover-password',
         loadComponent: () => import('./recover-password/recover-password.component'),
+        providers: [provideHttpClient()],
       },
     
  
