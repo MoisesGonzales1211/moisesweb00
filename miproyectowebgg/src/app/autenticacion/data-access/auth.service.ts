@@ -1,42 +1,55 @@
-import { Injectable, inject } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from '@angular/fire/auth';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
+import { sendPasswordResetEmail } from '@angular/fire/auth';
+import { toast } from 'ngx-sonner';
 
 export interface User {
   email: string;
   password: string;
 }
 
+
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
+  
 })
 export class AuthService {
-  private apiUrl = 'https://mi-api-real.com/api'; // URL real del servidor
-
-  constructor(private http: HttpClient) {} // HttpClient inyectado correctamente
-
-  // Método para recuperación de contraseña
-  recoverPassword(email: string): Observable<any> {
-    const url = `${this.apiUrl}/recover-password`; // Endpoint para recuperación
-    return this.http.post(url, { email }); // Solicitud POST al servidor
+  async recoverPassword(email: string): Promise<void> {
+    try {
+      await sendPasswordResetEmail(this._auth, email);
+      toast.success('Correo de recuperación enviado. Revisa tu bandeja de entrada.');
+    } catch (error: any) {
+      console.error('Error en recuperación de contraseña:', error);
+      if (error.code === 'auth/user-not-found') {
+        toast.error('El correo ingresado no está registrado.');
+      } else {
+        toast.error('Error al enviar el correo de recuperación. Intenta nuevamente.');
+      }
+    }
   }
-
+  
   private _auth = inject(Auth);
 
-  // Registro de usuario
-  signUp(user: User) {
-    return createUserWithEmailAndPassword(this._auth, user.email, user.password);
-  }
+  signUp ( user: User) {
+    return createUserWithEmailAndPassword(
+      this._auth,
+      user.email,
+      user.password
 
-  // Inicio de sesión con correo y contraseña
+    );
+  }
   signIn(user: User) {
     return signInWithEmailAndPassword(this._auth, user.email, user.password);
   }
-
-  // Inicio de sesión con Google
   signInWithGoogle() {
     const provider = new GoogleAuthProvider();
+
+    // provider.setCustomParameters({ prompt: 'select_account' });
+
     return signInWithPopup(this._auth, provider);
   }
+  
 }
