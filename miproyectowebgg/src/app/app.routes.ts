@@ -15,6 +15,8 @@ export const routes: Routes = [
       loadComponent: () => import('./shared/iu/layout.component'),
       loadChildren: () => import('./task/features/task.routes')
     },
+  
+  
     {
       path: '**',
       redirectTo: '/tasks',

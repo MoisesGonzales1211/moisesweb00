@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from '@angular/fire/auth';
-
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 
 
@@ -35,6 +36,5 @@ export class AuthService {
 
     return signInWithPopup(this._auth, provider);
   }
-
-
+  
 }

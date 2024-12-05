@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 
+
+
 export default [
     {
         path: 'lo-gin',
@@ -10,5 +12,11 @@ export default [
         path: 'reg-ister',
         loadComponent: () => 
             import('./reg-ister/reg-ister.component').then((mod) => mod.default),
-    }
+    },
+    {
+        path: 'recover-password',
+        loadComponent: () => import('./recover-password/recover-password.component'),
+      },
+    
+ 
 ] as Routes;
