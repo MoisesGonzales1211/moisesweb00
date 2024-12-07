@@ -1,37 +1,25 @@
 <div class="profile-container">
-    <h2>Gestión de Perfil</h2>
-  
     <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
-      <div class="form-group">
-        <label for="profilePic">Foto de Perfil</label>
-        <input type="file" id="profilePic" (change)="onFileSelected($event)">
-        <img [src]="profilePhotoUrl" alt="Foto de perfil" *ngIf="profilePhotoUrl" />
-      </div>
-  
-      <div class="form-group">
+      <div>
         <label for="name">Nombre</label>
-        <input id="name" formControlName="name" type="text" placeholder="Escribe tu nombre">
+        <input id="name" formControlName="name" type="text" />
       </div>
-  
-      <div class="form-group">
+      <div>
         <label for="career">Carrera</label>
-        <input id="career" formControlName="career" type="text" placeholder="Escribe tu carrera">
+        <input id="career" formControlName="career" type="text" />
       </div>
-  
-      <div class="form-group">
+      <div>
         <label for="year">Año Académico</label>
-        <input id="year" formControlName="year" type="number" placeholder="Escribe tu año académico">
+        <input id="year" formControlName="year" type="text" />
       </div>
-  
-      <div class="form-group">
-        <label for="privacy">Privacidad</label>
-        <select id="privacy" formControlName="privacy">
-          <option value="public">Público</option>
-          <option value="private">Privado</option>
-        </select>
+      <div>
+        <label for="profilePicture">Foto de Perfil</label>
+        <input id="profilePicture" type="file" (change)="onFileSelected($event)" />
+        <img *ngIf="profileForm.get('profilePicture')?.value" [src]="profileForm.get('profilePicture')?.value" alt="Foto de Perfil" />
       </div>
-  
-      <button type="submit" [disabled]="profileForm.invalid">Guardar Cambios</button>
+      <button type="submit">Guardar</button>
     </form>
+  
+    <app-privacy-settings></app-privacy-settings>
   </div>
   
