@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ProfileService } from './profile.service';
 import { CommonModule } from '@angular/common';
-
+import { PrivacySettingsComponent } from './privacy-settings/privacy-settings.component';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule]
+  standalone: true, 
+  imports: [ReactiveFormsModule, CommonModule, PrivacySettingsComponent]
+  
 })
 export default class ProfileComponent implements OnInit {
   profileForm: FormGroup;
