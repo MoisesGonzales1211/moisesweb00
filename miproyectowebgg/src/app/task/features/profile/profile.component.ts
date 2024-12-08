@@ -8,7 +8,7 @@ import { PrivacySettingsComponent } from './privacy-settings/privacy-settings.co
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
   standalone: true, 
-  imports: [ReactiveFormsModule, CommonModule, PrivacySettingsComponent]
+  imports: [ReactiveFormsModule, CommonModule, ]
   
 })
 export default class ProfileComponent implements OnInit {
